@@ -605,8 +605,8 @@ void ShowAboutWindow(MainWindow* win) {
 
 void DrawAboutPage(MainWindow* win, HDC hdc) {
     Rect rc = ClientRect(win->hwndCanvas);
-    UpdateAboutLayoutInfo(win->hwndCanvas, hdc, &rc);
-    DrawAbout(win->hwndCanvas, hdc, rc, win->staticLinks);
+    FillRect(hdc, rc, ThemeMainWindowBackgroundColor());
+    return;
     if (HasPermission(Perm::SavePreferences | Perm::DiskAccess) && gGlobalPrefs->rememberOpenedFiles) {
         Rect rect = DrawHideFrequentlyReadLink(win->hwndCanvas, hdc, _TRA("Show frequently read"));
         auto sl = new StaticLink(rect, kLinkShowList);
