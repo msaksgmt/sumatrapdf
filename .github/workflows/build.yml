@@ -26,3 +26,13 @@ jobs:
           BB_SECRET: ${{ secrets.BB_SECRET }}
           BB_ACCESS: ${{ secrets.BB_ACCESS }}
         run: bun .\cmd\ci-build.ts
+
+      - name: Upload SumatraPDF executable
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: SumatraPDF-3.6.1-no-logo
+          path: |
+            out/rel64/SumatraPDF.exe
+            out/rel64/SumatraPDF-*.exe
+          if-no-files-found: error
